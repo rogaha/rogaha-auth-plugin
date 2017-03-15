@@ -1,7 +1,7 @@
 FROM golang:1.7-alpine
 
-COPY . /go/src/github.com/tescherm/mattt-auth-plugin
-WORKDIR /go/src/github.com/tescherm/mattt-auth-plugin
+COPY . /go/src/github.com/rogaha/rogaha-auth-plugin
+WORKDIR /go/src/github.com/rogaha/rogaha-auth-plugin
 
 RUN set -ex \
     && apk add --no-cache --virtual .build-deps \
@@ -9,4 +9,4 @@ RUN set -ex \
     && go install --ldflags '-extldflags "-static"' \
     && apk del .build-deps
 
-CMD ["/go/bin/mattt-auth-plugin"]
+CMD ["/go/bin/rogaha-auth-plugin"]

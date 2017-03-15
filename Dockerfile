@@ -2,6 +2,6 @@ FROM alpine:3.4
 
 RUN mkdir -p /run/docker/plugins
 
-COPY mattt-auth-plugin mattt-auth-plugin
+COPY rogaha-auth-plugin rogaha-auth-plugin
 
-CMD ["mattt-auth-plugin"]
+CMD ["rogaha-auth-plugin"]

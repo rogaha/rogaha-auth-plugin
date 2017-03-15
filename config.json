@@ -1,8 +1,8 @@
 {  
-  "description":"matt auth test",
+  "description":"rogaha auth test",
   "documentation":"https://docs.docker.com/engine/extend/plugins/",
   "entrypoint":[  
-    "/mattt-auth-plugin"
+    "/rogaha-auth-plugin"
   ],
   "network":{  
     "type":"host"
@@ -11,7 +11,7 @@
     "types":[  
       "docker.authz/1.0"
     ],
-    "socket":"mattt.sock"
+    "socket":"rogaha.sock"
   },
   "env":[  
     {  
@@ -20,6 +20,15 @@
         "value"
       ],
       "value":"0"
+    }
+  ],
+  "mounts":[
+    {
+        "name": "docker",
+        "source": "/var/run/docker.sock",
+        "destination": "/var/run/docker.sock",
+        "type": "bind",
+        "options": ["bind"]
     }
   ]
 }

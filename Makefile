@@ -1,7 +1,29 @@
-PLUGIN_NAME=index-stage.docker.io/tescherm/mattt-auth-plugin
+# MIT License
+
+# Copyright (c) 2016 Matt Tescher
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+PLUGIN_NAME=index-stage.docker.io/rogaha/rogaha-auth-plugin
 PLUGIN_TAG=latest
 
-all: clean docker rootfs create
+all: clean docker rootfs create enable
 
 clean:
 	@echo "### rm ./plugin"
@@ -10,12 +32,12 @@ clean:
 docker:
 	@echo "### docker build: builder image"
 	@docker build -q -t builder -f Dockerfile.dev .
-	@echo "### extract mattt-auth-plugin"
+	@echo "### extract rogaha-auth-plugin"
 	@docker create --name tmp builder
-	@docker cp tmp:/go/bin/mattt-auth-plugin .
+	@docker cp tmp:/go/bin/rogaha-auth-plugin .
 	@docker rm -vf tmp
 	@docker rmi builder
-	@echo "### docker build: rootfs image with mattt-auth-plugin"
+	@echo "### docker build: rootfs image with rogaha-auth-plugin"
 	@docker build -q -t ${PLUGIN_NAME}:rootfs .
 
 rootfs:
